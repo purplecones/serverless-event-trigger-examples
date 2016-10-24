@@ -1,0 +1,40 @@
+{
+  "name": "serverless-es6-jest",
+  "version": "0.1.0",
+  "description": "Serverless framework starter template for ES6 with Babel, Webpack, and Jest testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/americansystems/serverless-es6-jest.git"
+  },
+  "keywords": [
+    "serverless",
+    "lambda",
+    "aws",
+    "es6",
+    "babel",
+    "webpack",
+    "jest"
+  ],
+  "author": "Mike Pugh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/americansystems/serverless-es6-jest/issues"
+  },
+  "homepage": "https://github.com/americansystems/serverless-es6-jest#readme",
+  "devDependencies": {
+    "babel-core": "6.17.0",
+    "babel-loader": "6.2.5",
+    "babel-plugin-transform-runtime": "6.15.0",
+    "babel-polyfill": "6.16.0",
+    "babel-preset-es2015": "6.16.0",
+    "babel-preset-stage-0": "6.16.0",
+    "jest": "16.0.2",
+    "serverless-webpack": "1.0.0-rc.2",
+    "webpack": "1.13.2"
+  },
+  "dependencies": {}
+}
