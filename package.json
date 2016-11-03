@@ -1,14 +1,14 @@
 {
-  "name": "serverless-es6-jest",
+  "name": "serverless-event-trigger-examples",
   "version": "0.1.0",
-  "description": "Serverless framework starter template for ES6 with Babel, Webpack, and Jest testing",
+  "description": "A collection of examples for triggering AWS Lambdas.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/americansystems/serverless-es6-jest.git"
+    "url": ""
   },
   "keywords": [
     "serverless",
@@ -19,12 +19,9 @@
     "webpack",
     "jest"
   ],
-  "author": "Mike Pugh",
+  "author": "Mirza Joldic",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/americansystems/serverless-es6-jest/issues"
-  },
-  "homepage": "https://github.com/americansystems/serverless-es6-jest#readme",
+  "homepage": "",
   "devDependencies": {
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
@@ -32,9 +29,15 @@
     "babel-polyfill": "6.16.0",
     "babel-preset-es2015": "6.16.0",
     "babel-preset-stage-0": "6.16.0",
+    "babelify": "^7.3.0",
     "jest": "16.0.2",
     "serverless-webpack": "1.0.0-rc.2",
-    "webpack": "1.13.2"
+    "webpack": "1.13.2",
+    "webpack-node-externals": "^1.5.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel-polyfill": "^6.16.0",
+    "moment": "^2.15.2",
+    "mongodb": "^2.2.11"
+  }
 }

@@ -1,25 +1,55 @@
+import { writeEventToDb } from './services/db';
 
-import { helloSvc } from './services/helloSvc';
+export const scheduledEvent = async (event, context, callback) => {
+  let response = {};
+  try {
+    const result = await writeEventToDb('events', {
+      source: 'Scheduled Event',
+      timestamp: new Date(),
+      meta: 'Triggered via AWS schedule every minute',
+      event,
+    });
+  } catch (e) {
+    response = { statusCode: 500 };
+  }
+  response = { statusCode: 200 };
+  callback(null, response);
+};
 
-export const helloLambda = (event, context, callback) => {
+export const s3Event = async (event, context, callback) => {
+  let response = {};
+  try {
+    const result = await writeEventToDb('events', {
+      source: 'S3 Bucket Event',
+      timestamp: new Date(),
+      meta: `Filename: '${event.Records[0].s3.object.key}'`,
+      event,
+    });
+  } catch (e) {
+    response = { statusCode: 500 };
+  }
+  response = { statusCode: 200 };
+  callback(null, response);
+};
 
-  const result = helloSvc({name: 'Serverless'});
-
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: result,
-      input: event,
-    }),
-  };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
-
+export const apiGatewayEvent = async (event, context, callback) => {
+  let response = {};
+  try {
+    const result = await writeEventToDb('events', {
+      source: 'API Gateway Event',
+      timestamp: new Date(),
+      meta: `Body contents: '${event.body}'`,
+      event,
+    });
+  } catch (e) {
+    response = { statusCode: 500 };
+  }
+  response = { statusCode: 200 };
   callback(null, response);
 };
 
 export default {
-  helloLambda
+  scheduledEvent,
+  s3Event,
+  apiGatewayEvent,
 }
-
