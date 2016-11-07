@@ -5,12 +5,13 @@ import { check } from 'meteor/check';
 export default function () {
   Meteor.publish('events', function () {
     const selector = {
-        // active: true
     };
     const options = {
-        // fields: {_id: 1, title: 1},
-        // sort: {createdAt: -1},
-        // limit: 10
+      sort: { timestamp: -1 },
+      limit: 10,
+      // tuning db qurying to be more realtime and show data as soon as it gets written to mongodb
+      disableOplog: true,
+      pollingIntervalMs: 500
     };
 
     return Events.find(selector, options);

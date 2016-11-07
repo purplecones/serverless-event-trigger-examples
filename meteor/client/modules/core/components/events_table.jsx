@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import Timeago from 'react-timeago';
+import { Table } from 'semantic-ui-react';
 
 class EventsTable extends React.Component {
   constructor() {
@@ -11,16 +12,16 @@ class EventsTable extends React.Component {
       return (
         <Table.Row key={index}>
           <Table.Cell>{event.source}</Table.Cell>
-          <Table.Cell>t</Table.Cell>
+          <Table.Cell>
+            { moment(event.timestamp).format('MM-DD-YY HH:mm:ss:SSS') } | <Timeago date={event.timestamp}/></Table.Cell>
           <Table.Cell>{event.meta}</Table.Cell>
         </Table.Row>
       );
     });
   }
   render() {
-    console.log(this.props.data);
     return (
-      <Table celled>
+      <Table basic="very">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Source</Table.HeaderCell>

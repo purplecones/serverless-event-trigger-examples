@@ -28,3 +28,8 @@ functions:
       - http:
           path: events/create
           method: post
+
+  trimEventsCollection:
+    handler: handler.trimEventsCollection
+    events:
+      - schedule: rate(10 minutes)

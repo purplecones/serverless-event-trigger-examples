@@ -6,9 +6,29 @@ export const writeEventToDb = (collection, data) => {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(MONGO_URL, (err, db) => {
       if (err) { reject(err); }
-      const result = db.collection(collection).insert(data);
+      resolve(db.collection(collection).insert(data));
       db.close();
-      resolve(result)
+    });
+  });
+};
+
+export const collectionCount = (collection) => {
+  const { MONGO_URL } = config;
+  return new Promise(function(resolve, reject) {
+    MongoClient.connect(MONGO_URL, (err, db) => {
+      if (err) { reject(err); }
+      resolve(db.collection(collection).find().count());
+      db.close();
+    });
+  });
+};
+
+export const trimCollection = (collection) => {
+  const { MONGO_URL } = config;
+  return new Promise(function(resolve, reject) {
+    MongoClient.connect(MONGO_URL, (err, db) => {
+      if (err) { reject(err); }
+      resolve(db.collection(collection).remove());
     });
   });
 };

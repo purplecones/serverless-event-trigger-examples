@@ -5,7 +5,7 @@ import EventsTable from '../components/events_table.jsx';
 export const composer = ({context}, onData) => {
   const { Collections, Meteor } = context();
   if (Meteor.subscribe('events').ready()) {
-    const events = Collections.Events.find().fetch();
+    const events = Collections.Events.find({}, { sort: { timestamp: -1 }}).fetch();
     onData(null, {
       data: {
         events,

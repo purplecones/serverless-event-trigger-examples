@@ -1,11 +1,11 @@
-import { writeEventToDb } from './services/db';
+import { writeEventToDb, collectionCount, trimCollection } from './services/db';
 
 export const scheduledEvent = async (event, context, callback) => {
   let response = {};
   try {
     const result = await writeEventToDb('events', {
       source: 'Scheduled Event',
-      timestamp: new Date(),
+      timestamp: Date.now(),
       meta: 'Triggered via AWS schedule every minute',
       event,
     });
@@ -16,12 +16,20 @@ export const scheduledEvent = async (event, context, callback) => {
   callback(null, response);
 };
 
+export const trimEventsCollection = async (event, context, callback) => {
+  const count = await collectionCount('events');
+  if (count >= 50) {
+    await trimCollection('events');
+  }
+  callback(null, {});
+};
+
 export const s3Event = async (event, context, callback) => {
   let response = {};
   try {
     const result = await writeEventToDb('events', {
       source: 'S3 Bucket Event',
-      timestamp: new Date(),
+      timestamp: Date.now(),
       meta: `Filename: '${event.Records[0].s3.object.key}'`,
       event,
     });
@@ -34,11 +42,13 @@ export const s3Event = async (event, context, callback) => {
 
 export const apiGatewayEvent = async (event, context, callback) => {
   let response = {};
+  const regex = /Body=(.+?)&/i;
+  const sms = event.body.match(regex);
   try {
     const result = await writeEventToDb('events', {
       source: 'API Gateway Event',
-      timestamp: new Date(),
-      meta: `Body contents: '${event.body}'`,
+      timestamp: Date.now(),
+      meta: `Body contents: '${sms}'`,
       event,
     });
   } catch (e) {
@@ -52,4 +62,5 @@ export default {
   scheduledEvent,
   s3Event,
   apiGatewayEvent,
+  trimEventsCollection,
 }
