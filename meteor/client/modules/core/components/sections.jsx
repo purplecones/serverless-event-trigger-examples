@@ -18,7 +18,8 @@ class SectionMenu extends React.Component {
     };
     switch (this.state.activeItem) {
       case 'schedule':
-        content.code = `functions:
+        content.code = `# serverless.yml
+functions:
   scheduledEvent:
     handler: handler.scheduledEvent
     events:
@@ -27,7 +28,8 @@ class SectionMenu extends React.Component {
         content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/schedule/';
         break;
       case 's3Event':
-        content.code = `functions:
+        content.code = `# serverless.yml
+functions:
   s3Event:
     handler: handler.s3Event
     events:
@@ -36,7 +38,8 @@ class SectionMenu extends React.Component {
         content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/s3/';
         break;
       case 'apiGateway':
-        content.code = `functions:
+        content.code = `# serverless.yml
+functions:
   apiGatewayEvent:
     handler: handler.apiGatewayEvent
     events:
