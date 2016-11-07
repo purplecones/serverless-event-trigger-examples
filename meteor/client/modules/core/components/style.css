@@ -9,7 +9,7 @@
 .node {
   color: white;
   border-radius: 50%;
-  background-color: blue;
+  /*background-color: blue;*/
   width: 30px;
   height: 30px;
   margin: 0 auto;

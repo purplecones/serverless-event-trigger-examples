@@ -1,5 +1,7 @@
 import Events from './events';
+import Nodes from './nodes';
 
 export {
-  Events
+  Events,
+  Nodes,
 };

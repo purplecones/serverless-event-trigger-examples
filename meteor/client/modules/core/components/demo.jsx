@@ -1,35 +1,17 @@
 import React from 'react';
+import Color from 'color';
 
-const nodes = [
-  { nodeSize: 30, id: 1 },
-  { nodeSize: 30, id: 2 },
-  { nodeSize: 30, id: 3 },
-  { nodeSize: 30, id: 4 },
-  { nodeSize: 30, id: 5 },
-  { nodeSize: 30, id: 6 },
-  { nodeSize: 30, id: 7 },
-  { nodeSize: 30, id: 8 },
-  { nodeSize: 30, id: 9 },
-  { nodeSize: 30, id: 10 },
-  { nodeSize: 30, id: 11 },
-  { nodeSize: 30, id: 12 },
-  { nodeSize: 30, id: 13 },
-  { nodeSize: 30, id: 14 },
-  { nodeSize: 30, id: 15 },
-  { nodeSize: 30, id: 16 },
-  { nodeSize: 30, id: 17 },
-  { nodeSize: 30, id: 18 },
-  { nodeSize: 30, id: 19 },
-  { nodeSize: 30, id: 20 },
-];
+
 
 class Demo extends React.Component {
   renderNodes() {
-    return nodes.map((node, index) => {
+    return this.props.data.nodes.map((node, index) => {
+      const baseColor = Color('#82adff');
       return (
         <div className="ui column" key={index}>
           <div className="node" style={
             {
+              backgroundColor: baseColor.darken(node.nodeSize/100*.5).hexString(), // TODO
               width: node.nodeSize,
               height: node.nodeSize,
             }}
@@ -46,10 +28,9 @@ class Demo extends React.Component {
     return (
       <div className="ui one column grid container">
         <div className="ui column">
-          <h1>AWS Lambda Event Triggers using Serverless</h1>
-          <p>Below are a few working examples of how to use events to trigger your AWS Lambda functions using Serverless</p>
+          <h1>Send SMS commands to 917 924 5262</h1>
         </div>
-        <div className="ui column">
+        <div className="ui column nodes">
           <div className="ui five column grid">
             {this.renderNodes()}
           </div>
