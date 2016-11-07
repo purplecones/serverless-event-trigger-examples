@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Menu } from 'semantic-ui-react';
 
 class SectionMenu extends React.Component {
@@ -67,6 +68,9 @@ class SectionMenu extends React.Component {
             onClick={this.handleItemClick}
             >
             API Gateway
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Link to='/demo'>Demo</Link>
           </Menu.Item>
         </Menu>
         {this.getSectionContent()}
