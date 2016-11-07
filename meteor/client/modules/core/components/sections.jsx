@@ -11,36 +11,56 @@ class SectionMenu extends React.Component {
     this.handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   }
   getSectionContent() {
-    let content = '';
+    let content = {
+      code: '',
+      desc: '',
+      docLink: '',
+    };
     switch (this.state.activeItem) {
       case 'schedule':
-        content = `functions:
+        content.code = `functions:
   scheduledEvent:
     handler: handler.scheduledEvent
     events:
       - schedule: rate(1 minute)`;
+        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/schedule/';
         break;
       case 's3Event':
-        content = `functions:
+        content.code = `functions:
   s3Event:
     handler: handler.s3Event
     events:
       - s3: my-unique-bucket`;
+        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/s3/';
         break;
       case 'apiGateway':
-        content = `functions:
+        content.code = `functions:
   apiGatewayEvent:
     handler: handler.apiGatewayEvent
     events:
       - http:
           path: events/create
-          method: post`
+          method: post`;
+        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/apigateway/';
         break;
     }
     return (
-      <pre className="codeblock">
-        <code className="code">{content}</code>
-      </pre>
+      <div className="ui two column grid">
+        <div className="ui column">
+          <pre className="codeblock">
+            <code className="code">{content.code}</code>
+          </pre>
+        </div>
+        <div className="ui column">
+          <div className="description">
+            <p>{content.desc}</p>
+            <a target="_blank" href={content.docLink}>Documentation</a>
+          </div>
+        </div>
+      </div>
     );
   }
   render() {
