@@ -23,7 +23,7 @@ class SectionMenu extends React.Component {
     handler: handler.scheduledEvent
     events:
       - schedule: rate(1 minute)`;
-        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.desc = 'This schedule is set at one minute. Currently, this is the shortest schedule AWS allows for. You can have multiple schedules for a single lambda.';
         content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/schedule/';
         break;
       case 's3Event':
@@ -32,7 +32,7 @@ class SectionMenu extends React.Component {
     handler: handler.s3Event
     events:
       - s3: my-unique-bucket`;
-        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.desc = 'This triggers the lambda whenever a file is added or modified at the specified bucket.';
         content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/s3/';
         break;
       case 'apiGateway':
@@ -43,7 +43,7 @@ class SectionMenu extends React.Component {
       - http:
           path: events/create
           method: post`;
-        content.desc = 'Schedule is set at one minute. You can have multiple schedules for a single lambda.';
+        content.desc = 'This setup create a API Gateway endpoint that is hooked up to this lambda. It is ';
         content.docLink = 'https://serverless.com/framework/docs/providers/aws/events/apigateway/';
         break;
     }
